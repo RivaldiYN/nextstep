@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -46,11 +47,15 @@ export default function HomePage() {
         <div className="flex-1 flex justify-center mt-4 md:mt-0">
           <div className="relative w-full flex justify-center">
             <div className="absolute inset-0 w-[80%] h-[80%] rounded-full opacity-70 blur-md z-0" />
-            <img
+            <Image
               src="/vector_animasi.png"
               alt="Hero Illustration"
+              width={600} // <- isi dengan ukuran yang sesuai
+              height={400} // <- isi dengan ukuran yang sesuai
               className="w-1/2 md:w-2/3 relative z-10"
+              priority
             />
+
           </div>
         </div>
       </section>

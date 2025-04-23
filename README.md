@@ -33,8 +33,6 @@ Whether you're confused, curious, or completely lost — we're here to guide you
   - **Mentoring** (with full detail)
   - **Webinar** (placeholder page)
   - **Kelas Online** (placeholder page)
-
-### 🤝 Mentoring Page (`/services/mentoring`)
 - Full explanation of what mentoring is, signs you might need it, and what mentees will gain.
 - Detailed schedule (with availability info).
 - Introduces 3 professional mentors:

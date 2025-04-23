@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -12,17 +13,32 @@ const navItems = [
 
 export default function HomePage() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="font-['Plus Jakarta Sans'] text-gray-800 bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] min-h-screen">
+      
       {/* Navbar */}
-      <nav className="flex justify-between items-center py-4 px-32 border-b">
+      <nav className="flex flex-wrap justify-between items-center py-4 px-6 md:px-32 border-b relative">
         <div className="text-xl font-bold">LOGO</div>
-        <ul className="flex space-x-6 text-[18px] font-extrabold">
+
+        {/* Toggle Button for Mobile */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden text-gray-800 focus:outline-none"
+        >
+          ☰
+        </button>
+
+        {/* Menu Items */}
+        <ul className={`w-full md:w-auto ${menuOpen ? 'block' : 'hidden'} md:flex space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0 text-[16px] md:text-[18px] font-extrabold`}>
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={pathname === item.href ? "text-teal-500" : "text-gray-800 hover:text-teal-500"}
+                className={pathname === item.href
+                  ? "text-teal-500 block"
+                  : "text-gray-800 hover:text-teal-500 block"}
               >
                 {item.name}
               </Link>
@@ -30,21 +46,23 @@ export default function HomePage() {
           ))}
         </ul>
       </nav>
+
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center px-8 pt-8">
+      <section className="flex flex-col md:flex-row items-center px-6 md:px-8 pt-8">
         <div className="flex-1">
-          <h1 className="text-6xl md:text-5xl font-bold leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
             Choosing a college is hard. Choosing a career is harder. <br />
             We&rsquo;re here to make it clearer - now you can take the <span className="text-teal-500">NextStep</span> with us
           </h1>
-          <p className="text-2xl text-gray-600 mb-6">
+          <p className="text-base sm:text-lg md:text-2xl text-gray-600 mb-6">
             Everyone&apos;s asking what you want to be. But no one&apos;s helping you find the answer
           </p>
-          <button className="bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg text-[18px]">
+          <button className="bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg text-base sm:text-lg md:text-[18px]">
             Take the NextStep ✨
           </button>
         </div>
-        <div className="flex-1 flex justify-center mt-4 md:mt-0">
+
+        <div className="flex-1 flex justify-center mt-6 md:mt-0">
           <div className="relative w-full flex justify-center">
             <div className="absolute inset-0 w-[80%] h-[80%] rounded-full opacity-70 blur-md z-0" />
             <Image
@@ -52,19 +70,21 @@ export default function HomePage() {
               alt="Hero Illustration"
               width={600}
               height={400}
-              className="w-1/2 md:w-2/3 relative z-10"
+              className="w-2/3 sm:w-1/2 md:w-2/3 relative z-10"
               priority
             />
           </div>
         </div>
       </section>
-      {/* Features Section */}
-      <section className="text-center px-6 mb-32">
-        <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg  text-center">
+            {/* Features Section */}
+            <section className="text-center px-6 mb-32">
+        <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg text-sm sm:text-base md:text-center">
           🎯 Our Mission
         </button>
-        <p className="text-[42px] font-semibold mb-4 mt-4">Everyone&apos;s asking what you want to be.<br />But no one&rsquo;s helping you find the answer.</p>
-        <p className="text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-2xl sm:text-3xl md:text-[42px] font-semibold mb-4 mt-4">
+          Everyone&apos;s asking what you want to be.<br />But no one&rsquo;s helping you find the answer.
+        </p>
+        <p className="text-base sm:text-lg md:text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
           You&rsquo;re expected to know what to study. You&rsquo;re expected to pick a career path. You&rsquo;re expected to &ldquo;have a plan.&rdquo;
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -83,16 +103,15 @@ export default function HomePage() {
             }
           ].map((item, i) => (
             <div key={i} className="border border-teal-400 rounded-lg p-6 text-left">
-              <h3 className="font-semibold mb-2 text-[24px]">{item.title}</h3>
-              <p className="text-[18px] text-gray-600">{item.desc}</p>
+              <h3 className="font-semibold mb-2 text-xl sm:text-2xl md:text-[24px]">{item.title}</h3>
+              <p className="text-base sm:text-[16px] md:text-[18px] text-gray-600">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
+
       {/* Call to Action Section */}
-      {/* Call to Action Section */}
-      <section className="relative bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] py-16 px-8 text-center overflow-hidden">
-        {/* Hexagon SVG Background */}
+      <section className="relative bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] py-16 px-6 md:px-8 text-center overflow-hidden">
         <svg
           className="absolute inset-0 w-full h-full opacity-10 z-0"
           xmlns="http://www.w3.org/2000/svg"
@@ -113,43 +132,41 @@ export default function HomePage() {
           <rect width="100%" height="100%" fill="url(#hexPattern)" />
         </svg>
 
-        {/* CTA Content */}
-        <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg text-center">
+        <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg text-sm sm:text-base">
           ✨ Your Future Awaits
         </button>
-        <p className="text-[42px] font-semibold mb-4 mt-4">The best time to plan your future is now.</p>
-        <p className="text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-2xl sm:text-3xl md:text-[42px] font-semibold mb-4 mt-4">The best time to plan your future is now.</p>
+        <p className="text-base sm:text-lg md:text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
           Let us help you discover where you&apos;re meant to go — and how to get there.
         </p>
-        <div className="bg-white p-8 rounded-lg max-w-xl mx-auto shadow-md z-10">
-          <p className="text-left font-bold text-[28px] mb-4 text-gray-800">
+        <div className="bg-white p-6 sm:p-8 rounded-lg max-w-xl mx-auto shadow-md z-10">
+          <p className="text-left font-bold text-xl sm:text-2xl md:text-[28px] mb-4 text-gray-800">
             You don&rsquo;t need to have it all figured out
           </p>
-          <p className="text-left text-[20px] text-gray-600 mb-4">
+          <p className="text-left text-base sm:text-lg md:text-[20px] text-gray-600 mb-4">
             At NextStep, we guide you through one of life&rsquo;s most important decisions. We&rsquo;re here to help you:
           </p>
-          <ul className="text-left text-[20px] text-gray-700 mb-6 list-none">
-            <li className="flex items-start gap-2">
-              <span className="text-[#29B0AC]">✔</span>
-              <span>Understand your strengths and potential</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#29B0AC]">✔</span>
-              <span>Discover career options that actually fit you</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-[#29B0AC]">✔</span>
-              <span>Choose a major with confidence</span>
-            </li>
+          <ul className="text-left text-base sm:text-lg md:text-[20px] text-gray-700 mb-6 list-none space-y-2">
+            {[
+              "Understand your strengths and potential",
+              "Discover career options that actually fit you",
+              "Choose a major with confidence"
+            ].map((text, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="text-[#29B0AC]">✔</span>
+                <span>{text}</span>
+              </li>
+            ))}
           </ul>
-          <button className="z-10 relative bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-[24px]">
+          <button className="z-10 relative bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px]">
             ✨ Take the NextStep ✨
           </button>
         </div>
       </section>
+
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-10 px-8 text-sm">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer className="bg-gray-900 text-white py-10 px-6 md:px-8 text-xs sm:text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm sm:text-base">
           <div>
             <div className="font-bold text-lg mb-2">LOGO</div>
             <p>Helping students find their path to success</p>
@@ -173,7 +190,7 @@ export default function HomePage() {
             <p>Twitter<br />LinkedIn<br />Instagram</p>
           </div>
         </div>
-        <div className="mt-10 text-center text-xs text-gray-400">
+        <div className="mt-10 text-center text-gray-400 text-[10px] sm:text-xs">
           © 2025 NextStep. All rights reserved.
         </div>
       </footer>

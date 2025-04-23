@@ -55,7 +55,6 @@ export default function HomePage() {
               className="w-1/2 md:w-2/3 relative z-10"
               priority
             />
-
           </div>
         </div>
       </section>
@@ -64,7 +63,7 @@ export default function HomePage() {
         <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg  text-center">
           🎯 Our Mission
         </button>
-        <p className="text-[42px] font-semibold mb-4 mt-4">Everyone's asking what you want to be.<br />But no one’s helping you find the answer.</p>
+        <p className="text-[42px] font-semibold mb-4 mt-4">Everyone&apos;s asking what you want to be.<br />But no one&rsquo;s helping you find the answer.</p>
         <p className="text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
           You’re expected to know what to study. You’re expected to pick a career path. You’re expected to “have a plan.”
         </p>
@@ -127,7 +126,7 @@ export default function HomePage() {
             You don’t need to have it all figured out
           </p>
           <p className="text-left text-[20px] text-gray-600 mb-4">
-            At NextStep, we guide you through one of life’s most important decisions. We’re here to help you:
+            At NextStep, we guide you through one of life&rsquo;s most important decisions. We&rsquo;re here to help you:
           </p>
           <ul className="text-left text-[20px] text-gray-700 mb-6 list-none">
             <li className="flex items-start gap-2">

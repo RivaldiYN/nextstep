@@ -35,10 +35,10 @@ export default function HomePage() {
         <div className="flex-1">
           <h1 className="text-6xl md:text-5xl font-bold leading-tight mb-4">
             Choosing a college is hard. Choosing a career is harder. <br />
-            We’re here to make it clearer – now you can take the <span className="text-teal-500">NextStep</span> with us
+            We&rsquo;re here to make it clearer - now you can take the <span className="text-teal-500">NextStep</span> with us
           </h1>
           <p className="text-2xl text-gray-600 mb-6">
-            Everyone’s asking what you want to be. But no one’s helping you find the answer
+            Everyone&apos;s asking what you want to be. But no one&apos;s helping you find the answer
           </p>
           <button className="bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg text-[18px]">
             Take the NextStep ✨
@@ -50,8 +50,8 @@ export default function HomePage() {
             <Image
               src="/vector_animasi.png"
               alt="Hero Illustration"
-              width={600} // <- isi dengan ukuran yang sesuai
-              height={400} // <- isi dengan ukuran yang sesuai
+              width={600}
+              height={400}
               className="w-1/2 md:w-2/3 relative z-10"
               priority
             />
@@ -65,7 +65,7 @@ export default function HomePage() {
         </button>
         <p className="text-[42px] font-semibold mb-4 mt-4">Everyone&apos;s asking what you want to be.<br />But no one&rsquo;s helping you find the answer.</p>
         <p className="text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
-          You’re expected to know what to study. You’re expected to pick a career path. You’re expected to “have a plan.”
+          You&rsquo;re expected to know what to study. You&rsquo;re expected to pick a career path. You&rsquo;re expected to &ldquo;have a plan.&rdquo;
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
@@ -119,11 +119,11 @@ export default function HomePage() {
         </button>
         <p className="text-[42px] font-semibold mb-4 mt-4">The best time to plan your future is now.</p>
         <p className="text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
-          Let us help you discover where you're meant to go — and how to get there.
+          Let us help you discover where you&apos;re meant to go — and how to get there.
         </p>
         <div className="bg-white p-8 rounded-lg max-w-xl mx-auto shadow-md z-10">
           <p className="text-left font-bold text-[28px] mb-4 text-gray-800">
-            You don’t need to have it all figured out
+            You don&rsquo;t need to have it all figured out
           </p>
           <p className="text-left text-[20px] text-gray-600 mb-4">
             At NextStep, we guide you through one of life&rsquo;s most important decisions. We&rsquo;re here to help you:

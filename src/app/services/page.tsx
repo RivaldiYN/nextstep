@@ -30,7 +30,7 @@ export default function ServicesPage() {
       ];
 
 
-      const openModal = (mentor: any) => {
+      const openModal = (mentor: Mentor) => {
             setSelectedMentor(mentor);
             setShowModal(true);
       };

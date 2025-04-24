@@ -68,7 +68,6 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest"
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{

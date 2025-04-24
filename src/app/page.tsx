@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
     <div className="font-['Plus Jakarta Sans'] text-gray-800 bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] min-h-screen">
-      
+
       {/* Navbar */}
       <nav className="flex flex-wrap justify-between items-center py-4 px-6 md:px-32 border-b relative">
         <div className="text-xl font-bold">LOGO</div>
@@ -52,12 +52,12 @@ export default function HomePage() {
         <div className="flex-1">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
             Choosing a college is hard. Choosing a career is harder. <br />
-            We&rsquo;re here to make it clearer - now you can take the <span className="text-teal-500">NextStep</span> with us
+            We&rsquo;re here to make it clearer - now you can take the <span className="text-[#29B0AC]">NextStep</span> with us
           </h1>
           <p className="text-base sm:text-lg md:text-2xl text-gray-600 mb-6">
             Everyone&apos;s asking what you want to be. But no one&apos;s helping you find the answer
           </p>
-          <button className="bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg text-base sm:text-lg md:text-[18px]">
+          <button className="bg-[#29B0AC] text-white py-2 px-4 rounded-xl text-base sm:text-lg md:text-[18px]">
             Take the NextStep ✨
           </button>
         </div>
@@ -76,8 +76,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-            {/* Features Section */}
-            <section className="text-center px-6 mb-32">
+      {/* Features Section */}
+      <section className="text-center px-6 mb-32">
         <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg text-sm sm:text-base md:text-center">
           🎯 Our Mission
         </button>
@@ -111,35 +111,25 @@ export default function HomePage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="relative bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] py-16 px-6 md:px-8 text-center overflow-hidden">
-        <svg
-          className="absolute inset-0 w-full h-full opacity-10 z-0"
-          xmlns="http://www.w3.org/2000/svg"
-          width="100%"
-          height="100%"
-          viewBox="0 0 100 100"
-          fill="none"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <defs>
-            <pattern id="hexPattern" width="20" height="17.32" patternUnits="userSpaceOnUse" patternTransform="scale(1)">
-              <polygon
-                points="10,0 20,5 20,15 10,20 0,15 0,5"
-                fill="#2c7a7b"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hexPattern)" />
-        </svg>
-
-        <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg text-sm sm:text-base">
+      <section
+        className="relative bg-gradient-to-b from-[#a2d6eb] to-[#F3F0EA] py-16 px-6 md:px-8 text-center overflow-hidden"
+        style={{
+          backgroundImage: 'url("/background-home.jpg"), linear-gradient(to bottom, #A2D6EB, #F3F0EA)',
+          backgroundBlendMode: 'overlay',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-full border border-white shadow-lg text-sm sm:text-base z-10 relative">
           ✨ Your Future Awaits
         </button>
-        <p className="text-2xl sm:text-3xl md:text-[42px] font-semibold mb-4 mt-4">The best time to plan your future is now.</p>
-        <p className="text-base sm:text-lg md:text-[24px] text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-2xl sm:text-3xl md:text-[42px] font-semibold mb-4 mt-4 relative z-10">
+          The best time to plan your future is now.
+        </p>
+        <p className="text-base sm:text-lg md:text-[24px] text-gray-600 max-w-2xl mx-auto mb-10 relative z-10">
           Let us help you discover where you&apos;re meant to go — and how to get there.
         </p>
-        <div className="bg-white p-6 sm:p-8 rounded-lg max-w-xl mx-auto shadow-md z-10">
+        <div className="bg-white p-6 sm:p-8 rounded-lg max-w-xl mx-auto shadow-md z-10 relative">
           <p className="text-left font-bold text-xl sm:text-2xl md:text-[28px] mb-4 text-gray-800">
             You don&rsquo;t need to have it all figured out
           </p>
@@ -158,7 +148,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <button className="z-10 relative bg-teal-500 text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px]">
+          <button className="z-10 relative bg-[#29B0AC] text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px]">
             ✨ Take the NextStep ✨
           </button>
         </div>
@@ -173,11 +163,11 @@ export default function HomePage() {
           </div>
           <div>
             <h4 className="font-semibold mb-2">Quick Links</h4>
-            <ul className="space-y-1">
-              <li>Home</li>
-              <li>About us</li>
-              <li>Our Services</li>
-              <li>FAQ</li>
+            <ul className="space-y-1 ">
+              <li className="hover:text-teal-500"><Link href="/">Home</Link></li>
+              <li className="hover:text-teal-500"><Link href="/about">About us</Link></li>
+              <li className="hover:text-teal-500"><Link href="/services">Our Services</Link></li>
+              <li className="hover:text-teal-500"><Link href="/faq">FAQ</Link></li>
             </ul>
           </div>
           <div>

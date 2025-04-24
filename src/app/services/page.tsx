@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import Image from 'next/image';
 
 const navItems = [
       { name: 'Home', href: '/' },

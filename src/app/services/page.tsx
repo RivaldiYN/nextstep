@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 
 const navItems = [
@@ -16,6 +16,10 @@ export default function ServicesPage() {
       const [menuOpen, setMenuOpen] = useState(false);
       const [showModal, setShowModal] = useState(false);
       const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
+      
+      // Refs for scrolling
+      const scheduleRef = useRef<HTMLElement>(null);
+      const mentorsRef = useRef<HTMLElement>(null);
 
       type Mentor = {
             name: string;
@@ -29,7 +33,6 @@ export default function ServicesPage() {
             { name: 'Syifa Aulia Putri', title: 'Education Consultant', img: '/syifa.png' }
       ];
 
-
       const openModal = (mentor: Mentor) => {
             setSelectedMentor(mentor);
             setShowModal(true);
@@ -38,6 +41,15 @@ export default function ServicesPage() {
       const closeModal = () => {
             setSelectedMentor(null);
             setShowModal(false);
+      };
+
+      // Scroll functions
+      const scrollToSchedule = () => {
+            scheduleRef.current?.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      const scrollToMentors = () => {
+            mentorsRef.current?.scrollIntoView({ behavior: 'smooth' });
       };
 
       return (
@@ -70,10 +82,14 @@ export default function ServicesPage() {
                                     Connect with industry leaders who&apos;ve walked the path you aspire to take. Your journey to success starts with the right guidance.
                               </p>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-sm">
-                                    <button className="bg-[#29B0AC] text-white py-2 px-6 rounded-xl text-base sm:text-lg">
+                                    <button 
+                                          onClick={scrollToSchedule}
+                                          className="bg-[#29B0AC] text-white py-2 px-6 rounded-xl text-base sm:text-lg cursor-pointer">
                                           Check Our Schedule
                                     </button>
-                                    <button className="bg-white text-[#29B0AC] py-2 px-6 rounded-xl text-base sm:text-lg border border-[#29B0AC]">
+                                    <button 
+                                          onClick={scrollToMentors}
+                                          className="bg-white text-[#29B0AC] py-2 px-6 rounded-xl text-base sm:text-lg border border-[#29B0AC] cursor-pointer">
                                           View Our Mentors
                                     </button>
                               </div>
@@ -84,24 +100,20 @@ export default function ServicesPage() {
                                     alt="Hero Illustration"
                                     width={600}
                                     height={600}
-                                    className="sm-hiden md:block"
+                                    className="hidden md:block"
                                     priority
                               />
                         </div>
                   </section>
-                  {/* Why Mentoring */}
                   <section className="flex flex-col md:flex-row items-center px-6 md:px-32 py-16 space-y-8 md:space-y-0 md:space-x-[400px]">
-                        {/* Image Wrapper */}
-                        <div className="relative w-[250px] h-[250px] flex-shrink-0">
-                              {/* Background image (behind) */}
+                        {/* Hidden on mobile */}
+                        <div className="relative w-[250px] h-[250px] flex-shrink-0 hidden md:block">
                               <Image
                                     src="/vector-3.png"
                                     alt="Background Shape"
                                     fill
                                     className="object-contain z-0"
                               />
-
-                              {/* Foreground image (front) */}
                               <Image
                                     src="/vector_service_2.png"
                                     alt="Mentoring"
@@ -116,37 +128,33 @@ export default function ServicesPage() {
                               Mentoring is a powerful tool for personal and professional development. It&apos;s not just about imparting knowledge; it&apos;s about creating meaningful connections that encourage progress. Through mentorship, individuals gain access to insights and experiences that might otherwise take years to discover on their own.
                         </div>
                   </section>
-                  {/* Mentoring Schedule */}
-                  <p className="text-xl md:text-[48px] sm:text-2xl font-bold mb-6 text-center">Mentoring Schedule</p>
-                  <section className="bg-[#F3F0EA] py-10 px-6 md:px-20 lg:px-28 rounded-3xl border-4 border-[#71a894] max-w-5xl mx-auto">
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-sm sm:text-base">
-                              {[
-                                    { day: 'Monday', date: '19 MAY' },
-                                    { day: 'Tuesday', date: '20 MAY' },
-                                    { day: 'Wednesday', date: '21 MAY' },
-                                    { day: 'Thursday', date: '22 MAY' }
-                              ].map((item, index) => (
-                                    <div key={index} className="bg-white p-4 rounded-xl border border-gray-300 flex flex-col items-center">
-                                          {/* Day */}
-                                          <p className="font-extrabold">{item.day}</p>
 
-                                          {/* Date */}
-                                          <p className="font-semibold mb-2">{item.date}</p>
-
-                                          {/* Circle for % Booked */}
-                                          <div className="w-16 h-16 bg-[#F3F3F3] rounded-full shadow-md flex items-center justify-center mb-2">
-                                                <p className="font-semibold text-sm leading-tight">0%<br />Booked</p>
+                  {/* Mentoring Schedule - Added ref here */}
+                  <section ref={scheduleRef} className="scroll-mt-16">
+                        <p className="text-xl md:text-[48px] sm:text-2xl font-bold mb-6 text-center">Mentoring Schedule</p>
+                        <section className="bg-[#F3F0EA] py-10 px-6 md:px-20 lg:px-28 rounded-3xl border-4 border-[#71a894] max-w-5xl mx-auto">
+                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-sm sm:text-base">
+                                    {[
+                                          { day: 'Monday', date: '19 MAY' },
+                                          { day: 'Tuesday', date: '20 MAY' },
+                                          { day: 'Wednesday', date: '21 MAY' },
+                                          { day: 'Thursday', date: '22 MAY' }
+                                    ].map((item, index) => (
+                                          <div key={index} className="bg-white p-4 rounded-xl border border-gray-300 flex flex-col items-center">
+                                                <p className="font-extrabold">{item.day}</p>
+                                                <p className="font-semibold mb-2">{item.date}</p>
+                                                <div className="w-16 h-16 bg-[#F3F3F3] rounded-full shadow-md flex items-center justify-center mb-2">
+                                                      <p className="font-semibold text-sm leading-tight">0%<br />Booked</p>
+                                                </div>
+                                                <p className="mt-1 text-[12px] text-semibold"><span className="font-bold">10+</span> jadwal tersedia</p>
                                           </div>
-
-                                          {/* Additional Text */}
-                                          <p className="mt-1 text-[12px] text-semibold"><span className="font-bold">10+</span> jadwal tersedia</p>
-                                    </div>
-                              ))}
-                        </div>
+                                    ))}
+                              </div>
+                        </section>
                   </section>
-
-                  {/* Meet Our Mentors */}
-                  <section className="px-6 md:px-32 py-12">
+                  
+                  {/* Meet Our Mentors - Added ref here */}
+                  <section ref={mentorsRef} className="px-6 md:px-32 py-12 scroll-mt-16">
                         <p className="text-xl md:text-[48px] sm:text-2xl font-bold mb-8 text-center">Meet Our Mentors!</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
                               {mentors.map((mentor, i) => (
@@ -193,7 +201,7 @@ export default function ServicesPage() {
                                           <h2 className="text-xl font-bold mb-1">{selectedMentor.name}</h2>
                                           <p className="text-sm text-gray-600 mb-4">{selectedMentor.title}</p>
                                           <p className="text-sm text-gray-700">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mentor ini berpengalaman di bidangnya dan siap membantu kamu mencapai tujuanmu.
+                                                Mentor ini berpengalaman di bidangnya dan siap membantu kamu mencapai tujuanmu.
                                           </p>
                                     </div>
                               </div>

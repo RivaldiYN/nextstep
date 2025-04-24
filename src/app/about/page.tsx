@@ -181,7 +181,7 @@ export default function AboutPage() {
                                     <p>Twitter<br />LinkedIn<br />Instagram</p>
                               </div>
                         </div>
-                        <div className="mt-10 text-center text-gray-400 text-[10px] sm:text-xs">
+                        <div className="mt-10 text-left text-gray-400 text-[10px] sm:text-xs">
                               © 2025 NextStep. All rights reserved.
                         </div>
                   </footer>

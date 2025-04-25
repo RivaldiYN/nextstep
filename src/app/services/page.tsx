@@ -84,12 +84,12 @@ export default function ServicesPage() {
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-sm">
                                     <button 
                                           onClick={scrollToSchedule}
-                                          className="bg-[#29B0AC] text-white py-2 px-6 rounded-xl text-base sm:text-lg cursor-pointer">
+                                          className="bg-[#29B0AC] text-white py-2 px-6 rounded-xl text-base sm:text-lg cursor-pointer hover:bg-[#c3e3e2] transition hover:text-[#29B0AC]">
                                           Check Our Schedule
                                     </button>
                                     <button 
                                           onClick={scrollToMentors}
-                                          className="bg-white text-[#29B0AC] py-2 px-6 rounded-xl text-base sm:text-lg border border-[#29B0AC] cursor-pointer">
+                                          className="bg-white text-[#29B0AC] py-2 px-6 rounded-xl text-base sm:text-lg border border-[#29B0AC] cursor-pointer hover:bg-[#c3e3e2] transition hover:text-[#29B0AC]">
                                           View Our Mentors
                                     </button>
                               </div>
@@ -106,7 +106,6 @@ export default function ServicesPage() {
                         </div>
                   </section>
                   <section className="flex flex-col md:flex-row items-center px-6 md:px-32 py-16 space-y-8 md:space-y-0 md:space-x-[400px]">
-                        {/* Hidden on mobile */}
                         <div className="relative w-[250px] h-[250px] flex-shrink-0 hidden md:block">
                               <Image
                                     src="/vector-3.png"

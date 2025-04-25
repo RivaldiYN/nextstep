@@ -84,7 +84,7 @@ export default function FAQPage() {
                         <button className="bg-white text-[#29B0AC] py-2 px-4 rounded-xl border border-white shadow-lg text-base sm:text-lg md:text-[24px] text-center">
                               ❓ Frequently Asked Questions
                         </button>
-                        <h1 className="text-2xl md:text-3xl font-extrabold mt-6">Have questions? We're here to help.</h1>
+                        <h1 className="text-2xl md:text-3xl font-extrabold mt-6">Have questions? We&rsquo;re here to help.</h1>
                         <p className="text-md md:text-lg text-gray-700 mt-2 max-w-2xl mx-auto">
                               Find answers to common questions about NextStep and how we can help guide your career journey.
                         </p>
@@ -124,7 +124,7 @@ export default function FAQPage() {
                         <div className="bg-[#F3F0EA] border border-[#71A894] rounded-xl p-6 md:max-w-md text-center">
                               <h2 className="text-xl font-bold mb-2 md:text-[24px]">Got another collaboration idea?</h2>
                               <p className="text-sm text-[#5E6366]">
-                                    No worries! NextStep is open to various forms of collaboration. If you have an idea that could bring value to the community, we're ready to team up! Our journey starts here. <span className="font-medium">#TaketheNextStep</span>.
+                                    No worries! NextStep is open to various forms of collaboration. If you have an idea that could bring value to the community, we&rsquo;re ready to team up! Our journey starts here. <span className="font-medium">#TaketheNextStep</span>.
                               </p>
                               <p className="text-sm text-[#5E6366] mt-2">Feel free to reach out to our contact person to collaborate with NextStep.</p>
                         </div>

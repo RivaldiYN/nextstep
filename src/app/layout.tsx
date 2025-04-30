@@ -26,18 +26,18 @@ export const metadata: Metadata = {
     "education platform",
     "NextStep"
   ],
-  authors: [{ name: "NextStep Team", url: "https://nextstep.id" }],
+  authors: [{ name: "NextStep Team", url: "https://nextstep-org.vercel.app/" }],
   creator: "NextStep",
   publisher: "NextStep",
   openGraph: {
     title: "NextStep - Discover Your Path with Confidence",
     description:
       "Get personalized mentoring, explore careers, and plan your future with clarity. Join NextStep today.",
-    url: "https://nextstep.id",
+    url: "https://nextstep-org.vercel.app/",
     siteName: "NextStep",
     images: [
       {
-        url: "https://nextstep.id/og-image.png",
+        url: "https://nextstep-org.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "NextStep Career Discovery"
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     images: ["https://nextstep.id/og-image.png"],
     creator: "@nextstep_id"
   },
-  metadataBase: new URL("https://nextstep.id"),
+  metadataBase: new URL("https://nextstep-org.vercel.app/"),
   robots: {
     index: true,
     follow: true,

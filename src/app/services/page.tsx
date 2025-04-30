@@ -16,7 +16,7 @@ export default function ServicesPage() {
       const [menuOpen, setMenuOpen] = useState(false);
       const [showModal, setShowModal] = useState(false);
       const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
-      
+
       // Refs for scrolling
       const scheduleRef = useRef<HTMLElement>(null);
       const mentorsRef = useRef<HTMLElement>(null);
@@ -54,10 +54,21 @@ export default function ServicesPage() {
 
       return (
             <div className="font-['Plus Jakarta Sans'] text-gray-800 bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] min-h-screen">
-                  {/* Navbar */}
-                  <nav className="flex flex-wrap justify-between items-center py-4 px-6 md:px-32 border-b bg-transparent relative z-20">
-                        <div className="text-xl font-bold">LOGO</div>
-                        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-800">
+                  <nav className="flex flex-wrap justify-between items-center py-4 px-6 md:px-32 border-b relative">
+                        <div className="flex-shrink-0">
+                              <Image
+                                    src="/logo.png"
+                                    alt="Logo"
+                                    width={100}
+                                    height={100}
+                                    className="w-16 md:w-20 lg:w-24 h-auto"
+                                    priority
+                              />
+                        </div>
+                        <button
+                              onClick={() => setMenuOpen(!menuOpen)}
+                              className="md:hidden text-gray-800 focus:outline-none"
+                        >
                               ☰
                         </button>
                         <ul className={`w-full md:w-auto ${menuOpen ? 'block' : 'hidden'} md:flex space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0 text-[16px] md:text-[18px] font-extrabold`}>
@@ -82,12 +93,12 @@ export default function ServicesPage() {
                                     Connect with industry leaders who&apos;ve walked the path you aspire to take. Your journey to success starts with the right guidance.
                               </p>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-sm">
-                                    <button 
+                                    <button
                                           onClick={scrollToSchedule}
                                           className="bg-[#29B0AC] text-white py-2 px-6 rounded-xl text-base sm:text-lg cursor-pointer hover:bg-[#c3e3e2] transition hover:text-[#29B0AC]">
                                           Check Our Schedule
                                     </button>
-                                    <button 
+                                    <button
                                           onClick={scrollToMentors}
                                           className="bg-white text-[#29B0AC] py-2 px-6 rounded-xl text-base sm:text-lg border border-[#29B0AC] cursor-pointer hover:bg-[#c3e3e2] transition hover:text-[#29B0AC]">
                                           View Our Mentors
@@ -121,13 +132,11 @@ export default function ServicesPage() {
                                     className="relative z-10"
                               />
                         </div>
-
                         {/* Text Box */}
                         <div className="bg-white md:text-[24px] border-4 border-[#71a894] p-6 rounded-xl shadow-sm text-sm sm:text-base max-w-xl font-semibold">
                               Mentoring is a powerful tool for personal and professional development. It&apos;s not just about imparting knowledge; it&apos;s about creating meaningful connections that encourage progress. Through mentorship, individuals gain access to insights and experiences that might otherwise take years to discover on their own.
                         </div>
                   </section>
-
                   {/* Mentoring Schedule - Added ref here */}
                   <section ref={scheduleRef} className="scroll-mt-16">
                         <p className="text-xl md:text-[48px] sm:text-2xl font-bold mb-6 text-center">Mentoring Schedule</p>
@@ -151,7 +160,6 @@ export default function ServicesPage() {
                               </div>
                         </section>
                   </section>
-                  
                   {/* Meet Our Mentors - Added ref here */}
                   <section ref={mentorsRef} className="px-6 md:px-32 py-12 scroll-mt-16">
                         <p className="text-xl md:text-[48px] sm:text-2xl font-bold mb-8 text-center">Meet Our Mentors!</p>
@@ -178,7 +186,6 @@ export default function ServicesPage() {
                               ))}
                         </div>
                   </section>
-
                   {/* Mentor Modal */}
                   {showModal && selectedMentor && (
                         <div className="fixed inset-0  bg-opacity-40 flex items-center justify-center z-50 px-4">
@@ -206,7 +213,6 @@ export default function ServicesPage() {
                               </div>
                         </div>
                   )}
-
                   {/* How to Join */}
                   <section className="py-10 px-6 md:px-32 text-center">
                         <p className="text-xl md:text-[48px] sm:text-2xl font-bold mb-6">How To Join Our Mentoring?</p>
@@ -261,11 +267,19 @@ export default function ServicesPage() {
                         </div>
                   </section>
                   {/* Footer */}
-                  <footer className="bg-gray-900 text-white py-10 px-6 md:px-8 text-xs sm:text-sm">
+                  <footer className="bg-[#393737] text-white py-10 px-6 md:px-8 text-xs sm:text-sm">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm sm:text-base">
                               <div>
-                                    <div className="font-bold text-lg mb-2">LOGO</div>
-                                    <p>Helping students find their path to success</p>
+                                    <div className="mb-3">
+                                          <Image
+                                                src="/logo.png"
+                                                alt="NextStep Logo"
+                                                width={100}
+                                                height={100}
+                                                className="w-20 sm:w-24 md:w-28 lg:w-32 h-auto"
+                                                priority
+                                          />
+                                    </div>
                               </div>
                               <div>
                                     <h4 className="font-semibold mb-2">Quick Links</h4>
@@ -286,7 +300,7 @@ export default function ServicesPage() {
                                     <p>Twitter<br />LinkedIn<br />Instagram</p>
                               </div>
                         </div>
-                        <div className="mt-10 text-left text-gray-400 text-[10px] sm:text-xs">
+                        <div className="mt-10 text-center text-gray-400 text-[10px] sm:text-xs">
                               © 2025 NextStep. All rights reserved.
                         </div>
                   </footer>

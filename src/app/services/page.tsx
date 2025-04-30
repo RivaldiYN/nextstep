@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
+import MentorModal from '@/components/mentormodal';
 
 const navItems = [
       { name: 'Home', href: '/' },
@@ -15,26 +16,10 @@ export default function ServicesPage() {
       const pathname = usePathname();
       const [menuOpen, setMenuOpen] = useState(false);
       const [showModal, setShowModal] = useState(false);
-      const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
+      const [selectedMentor, setSelectedMentor] = useState<'fauzan' | 'dalimi' | 'syifa' | null>(null);
 
-      // Refs for scrolling
-      const scheduleRef = useRef<HTMLElement>(null);
-      const mentorsRef = useRef<HTMLElement>(null);
-
-      type Mentor = {
-            name: string;
-            title: string;
-            img: string;
-      };
-
-      const mentors: Mentor[] = [
-            { name: 'Fauzan Al-Rasyid', title: 'Career & College Life Coach', img: '/fauzan.png' },
-            { name: 'Dalimi Nurdin', title: 'Education Consultant', img: '/dalimi.png' },
-            { name: 'Syifa Aulia Putri', title: 'Education Consultant', img: '/syifa.png' }
-      ];
-
-      const openModal = (mentor: Mentor) => {
-            setSelectedMentor(mentor);
+      const openModal = (mentorId: 'fauzan' | 'dalimi' | 'syifa') => {
+            setSelectedMentor(mentorId);
             setShowModal(true);
       };
 
@@ -42,6 +27,46 @@ export default function ServicesPage() {
             setSelectedMentor(null);
             setShowModal(false);
       };
+
+      // Refs for scrolling
+      const scheduleRef = useRef<HTMLElement>(null);
+      const mentorsRef = useRef<HTMLElement>(null);
+
+      type Mentor = {
+            id: 'fauzan' | 'dalimi' | 'syifa'; // tambahkan ID yang cocok
+            name: string;
+            title: string;
+            img: string;
+            description: string;
+      };
+
+      const mentors: Mentor[] = [
+            {
+                  id: 'fauzan',
+                  name: 'Fauzan Al-Rasyid',
+                  title: 'Career & College Life Coach',
+                  img: '/fauzan.png',
+                  description:
+                        'Fauzan memiliki pengalaman lebih dari 5 tahun dalam membimbing mahasiswa dan fresh graduate dalam membangun karier...'
+            },
+            {
+                  id: 'dalimi',
+                  name: 'Dalimi Nurdin',
+                  title: 'Education Consultant',
+                  img: '/dalimi.png',
+                  description:
+                        'Dalimi telah membantu ratusan pelajar dalam meraih beasiswa...'
+            },
+            {
+                  id: 'syifa',
+                  name: 'Syifa Aulia Putri',
+                  title: 'Education Consultant',
+                  img: '/syifa.png',
+                  description:
+                        'Syifa fokus pada pengembangan strategi belajar efektif...'
+            }
+      ];
+
 
       // Scroll functions
       const scrollToSchedule = () => {
@@ -167,7 +192,7 @@ export default function ServicesPage() {
                               {mentors.map((mentor, i) => (
                                     <div
                                           key={i}
-                                          onClick={() => openModal(mentor)}
+                                          onClick={() => openModal(mentor.id)}
                                           className="bg-white p-4 rounded-xl border-4 border-[#71a894] shadow-sm cursor-pointer hover:shadow-lg transition duration-300"
                                     >
                                           <div className="relative w-28 h-28 mx-auto mb-4">
@@ -188,30 +213,11 @@ export default function ServicesPage() {
                   </section>
                   {/* Mentor Modal */}
                   {showModal && selectedMentor && (
-                        <div className="fixed inset-0  bg-opacity-40 flex items-center justify-center z-50 px-4">
-                              <div className="bg-white rounded-xl border-4 border-[#71a894] shadow-sm p-6 w-full max-w-md relative">
-                                    <button
-                                          onClick={closeModal}
-                                          className="absolute top-2 right-4 text-gray-500 text-xl hover:text-black cursor-pointer"
-                                    >
-                                          &times;
-                                    </button>
-                                    <div className="text-center">
-                                          <Image
-                                                src={selectedMentor.img}
-                                                alt={selectedMentor.name}
-                                                width={100}
-                                                height={100}
-                                                className="rounded-full mx-auto mb-4"
-                                          />
-                                          <h2 className="text-xl font-bold mb-1">{selectedMentor.name}</h2>
-                                          <p className="text-sm text-gray-600 mb-4">{selectedMentor.title}</p>
-                                          <p className="text-sm text-gray-700">
-                                                Mentor ini berpengalaman di bidangnya dan siap membantu kamu mencapai tujuanmu.
-                                          </p>
-                                    </div>
-                              </div>
-                        </div>
+                        <MentorModal
+                              isOpen={showModal}
+                              onClose={closeModal}
+                              mentor={selectedMentor}
+                        />
                   )}
                   {/* How to Join */}
                   <section className="py-10 px-6 md:px-32 text-center">

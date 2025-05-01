@@ -151,9 +151,11 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <button className="z-10 relative bg-[#29B0AC] text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px]">
+          <Link href="/services">
+          <button className="z-10 relative bg-[#29B0AC] text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px] cursor-pointer">
             ✨ Take the NextStep ✨
           </button>
+          </Link>
         </div>
       </section>
       <footer className="bg-[#393737] text-white py-10 px-6 md:px-8 text-xs sm:text-sm">

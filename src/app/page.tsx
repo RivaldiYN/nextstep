@@ -7,13 +7,22 @@ import { useState } from 'react';
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About us", href: "/about" },
-  { name: "Our Services", href: "/services" },
+  {
+    name: "Our Services",
+    href: "/services",
+    submenu: [
+      { name: "Mentoring", href: "/services/mentoring" },
+      { name: "Webinar", href: "/services/webinar" },
+      { name: "Kelas Online", href: "/services/kelas-online" },
+    ],
+  },
   { name: "FAQ", href: "/faq" }
 ];
 
 export default function HomePage() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
     <div className="font-['Plus Jakarta Sans'] text-gray-800 bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] min-h-screen">
@@ -36,24 +45,87 @@ export default function HomePage() {
         </button>
         <ul className={`w-full md:w-auto ${menuOpen ? 'block' : 'hidden'} md:flex space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0 text-[16px] md:text-[18px] font-extrabold`}>
           {navItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className={pathname === item.href
-                  ? "text-teal-500 block"
-                  : "text-gray-800 hover:text-teal-500 block"}
-              >
-                {item.name}
-              </Link>
+            <li key={item.href} className="relative group">
+              {item.submenu ? (
+                <>
+                  <div className="md:hidden">
+                    <Link
+                      href={item.href}
+                      className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"
+                        } hover:bg-[#d1f0ee] transition`}
+                    >
+                      {item.name}
+                    </Link>
+                    <button
+                      onClick={() => setServicesOpen(!servicesOpen)}
+                      className="md:hidden absolute right-2 top-2 px-2"
+                    >
+                      <span className="text-sm">▼</span>
+                    </button>
+                  </div>
+                  <div className="hidden md:block">
+                    <Link
+                      href={item.href}
+                      className={`
+          block px-4 py-2 rounded-md 
+          ${pathname === item.href ? "text-teal-500" : "text-gray-800"} 
+          hover:bg-[#d1f0ee] transition
+        `}
+                    >
+                      <span className="flex items-center">
+                        {item.name}
+                        <span className="text-sm ml-1">▼</span>
+                      </span>
+                    </Link>
+                  </div>
+                  <ul
+                    className={`${servicesOpen ? "block" : "hidden"
+                      } md:hidden absolute left-0 top-full bg-white rounded-lg shadow-lg w-40 z-50`}
+                  >
+                    {item.submenu.map((sub) => (
+                      <li key={sub.href}>
+                        <Link
+                          href={sub.href}
+                          className="block px-4 py-2 hover:bg-[#d1f0ee] text-gray-800 transition"
+                        >
+                          {sub.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="hidden md:group-hover:block absolute left-0 top-full pt-1 z-50">
+                    <ul className="bg-white rounded-lg shadow-lg w-40">
+                      {item.submenu.map((sub) => (
+                        <li key={sub.href}>
+                          <Link
+                            href={sub.href}
+                            className="block px-4 py-2 hover:bg-[#d1f0ee] text-gray-800 transition"
+                          >
+                            {sub.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"
+                    } hover:bg-[#d1f0ee] transition`}
+                >
+                  {item.name}
+                </Link>
+              )}
+
             </li>
           ))}
         </ul>
       </nav>
-
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center px-6 md:px-8 pt-8">
         <div className="flex-1">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-xl lg:text-5xl font-bold leading-tight mb-4">
             Choosing a college is hard. Choosing a career is harder. <br />
             We&rsquo;re here to make it clearer - now you can take the <span className="text-[#29B0AC]">NextStep</span> with us
           </h1>
@@ -64,7 +136,6 @@ export default function HomePage() {
             Take the NextStep ✨
           </button>
         </div>
-
         <div className="flex-1 flex justify-center mt-6 md:mt-0">
           <div className="relative w-full flex justify-center">
             <div className="absolute inset-0 w-[80%] h-[80%] rounded-full opacity-70 blur-md z-0" />
@@ -152,9 +223,9 @@ export default function HomePage() {
             ))}
           </ul>
           <Link href="/services">
-          <button className="z-10 relative bg-[#29B0AC] text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px] cursor-pointer">
-            ✨ Take the NextStep ✨
-          </button>
+            <button className="z-10 relative bg-[#29B0AC] text-white py-2 px-4 rounded-xl border border-white shadow-lg hover:bg-teal-600 transition text-base sm:text-lg md:text-[24px] cursor-pointer">
+              ✨ Take the NextStep ✨
+            </button>
           </Link>
         </div>
       </section>
@@ -184,11 +255,11 @@ export default function HomePage() {
           <div>
             <h4 className="font-semibold mb-2">Contact</h4>
             <p>partnership@nextstep.id</p>
-            <p>0822-9807-3454 (Chat only)</p>
+            <Link href="https://wa.me/+6282298073454"><p className="hover:text-teal-500">0822-9807-3454 (Chat only)</p></Link>
           </div>
           <div>
             <h4 className="font-semibold mb-2">Follow Us</h4>
-            <p>Twitter<br />LinkedIn<br />Instagram</p>
+            <Link href="https://www.instagram.com/lets.nextstep?igsh=dDVzaWw2NmhxbzMw"><p className="hover:text-teal-500">Instagram</p></Link>
           </div>
         </div>
         <div className="mt-10 text-center text-gray-400 text-[10px] sm:text-xs">

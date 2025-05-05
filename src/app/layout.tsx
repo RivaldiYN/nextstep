@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "NextStep - Discover Your Path with Confidence",
   description:
-    "NextStep helps students and young professionals navigate their academic and career journey with personalized mentoring, career tools, and real insights.",
+    "NextStep helps people and young professionals navigate their academic and career journey with personalized mentoring, career tools, and real insights.",
   keywords: [
     "career guidance",
     "mentoring",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NextStep - Discover Your Path with Confidence",
     description:
-      "Guiding students and young professionals to make better education and career choices.",
+      "Guiding people and young professionals to make better education and career choices.",
     images: ["https://nextstep.id/og-image.png"],
     creator: "@nextstep_id"
   },

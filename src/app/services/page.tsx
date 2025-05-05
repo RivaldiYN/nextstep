@@ -6,15 +6,24 @@ import Image from 'next/image';
 import MentorModal from '@/components/mentormodal';
 
 const navItems = [
-      { name: 'Home', href: '/' },
-      { name: 'About us', href: '/about' },
-      { name: 'Our Services', href: '/services' },
-      { name: 'FAQ', href: '/faq' }
+      { name: "Home", href: "/" },
+      { name: "About us", href: "/about" },
+      {
+            name: "Our Services",
+            href: "/services",
+            submenu: [
+                  { name: "Mentoring", href: "/services/mentoring" },
+                  { name: "Webinar", href: "/services/webinar" },
+                  { name: "Kelas Online", href: "/services/kelas-online" },
+            ],
+      },
+      { name: "FAQ", href: "/faq" }
 ];
 
 export default function ServicesPage() {
       const pathname = usePathname();
       const [menuOpen, setMenuOpen] = useState(false);
+      const [servicesOpen, setServicesOpen] = useState(false);
       const [showModal, setShowModal] = useState(false);
       const [selectedMentor, setSelectedMentor] = useState<'fauzan' | 'dalimi' | 'syifa' | null>(null);
 
@@ -98,12 +107,75 @@ export default function ServicesPage() {
                         </button>
                         <ul className={`w-full md:w-auto ${menuOpen ? 'block' : 'hidden'} md:flex space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0 text-[16px] md:text-[18px] font-extrabold`}>
                               {navItems.map((item) => (
-                                    <li key={item.href}>
-                                          <Link
-                                                href={item.href}
-                                                className={pathname === item.href ? 'text-teal-500 block' : 'text-gray-800 hover:text-teal-500 block'}>
-                                                {item.name}
-                                          </Link>
+                                    <li key={item.href} className="relative group">
+                                          {item.submenu ? (
+                                                <>
+                                                      <div className="md:hidden">
+                                                            <Link
+                                                                  href={item.href}
+                                                                  className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"
+                                                                        } hover:bg-[#d1f0ee] transition`}
+                                                            >
+                                                                  {item.name}
+                                                            </Link>
+                                                            <button
+                                                                  onClick={() => setServicesOpen(!servicesOpen)}
+                                                                  className="md:hidden absolute right-2 top-2 px-2"
+                                                            >
+                                                                  <span className="text-sm">▼</span>
+                                                            </button>
+                                                      </div>
+                                                      <div className="hidden md:block">
+                                                            <Link
+                                                                  href={item.href}
+                                                                  className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"}hover:bg-[#d1f0ee] transition`}
+                                                            >
+                                                                  <span className="flex items-center">
+                                                                        {item.name}
+                                                                        <span className="text-sm ml-1">▼</span>
+                                                                  </span>
+                                                            </Link>
+                                                      </div>
+                                                      <ul
+                                                            className={`${servicesOpen ? "block" : "hidden"
+                                                                  } md:hidden absolute left-0 top-full bg-white rounded-lg shadow-lg w-40 z-50`}
+                                                      >
+                                                            {item.submenu.map((sub) => (
+                                                                  <li key={sub.href}>
+                                                                        <Link
+                                                                              href={sub.href}
+                                                                              className="block px-4 py-2 hover:bg-[#d1f0ee] text-gray-800 transition"
+                                                                        >
+                                                                              {sub.name}
+                                                                        </Link>
+                                                                  </li>
+                                                            ))}
+                                                      </ul>
+                                                      <div className="hidden md:group-hover:block absolute left-0 top-full pt-1 z-50">
+                                                            <ul className="bg-white rounded-lg shadow-lg w-40">
+                                                                  {item.submenu.map((sub) => (
+                                                                        <li key={sub.href}>
+                                                                              <Link
+                                                                                    href={sub.href}
+                                                                                    className="block px-4 py-2 hover:bg-[#d1f0ee] text-gray-800 transition"
+                                                                              >
+                                                                                    {sub.name}
+                                                                              </Link>
+                                                                        </li>
+                                                                  ))}
+                                                            </ul>
+                                                      </div>
+                                                </>
+                                          ) : (
+                                                <Link
+                                                      href={item.href}
+                                                      className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"
+                                                            } hover:bg-[#d1f0ee] transition`}
+                                                >
+                                                      {item.name}
+                                                </Link>
+                                          )}
+
                                     </li>
                               ))}
                         </ul>
@@ -244,24 +316,30 @@ export default function ServicesPage() {
                         </div>
                   </section>
                   <section className="px-6 md:px-20 lg:px-32 py-12">
-                        <h2 className="text-[28px] sm:text-3xl md:text-[48px] font-bold mb-12 text-center">Our Packages</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
-                              {Array(3).fill(0).map((_, i) => (
+                        <h2 className="text-[28px] sm:text-3xl md:text-[48px] font-bold mb-12 text-center">
+                              Our Packages
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-1 justify-items-center gap-6">
+                              {Array(1).fill(0).map((_, i) => (
                                     <div
                                           key={i}
-                                          className="bg-white border border-gray-300 rounded-2xl p-6 shadow-md flex flex-col text-center"
+                                          className="bg-white border border-gray-300 rounded-2xl p-6 shadow-md flex flex-col text-center w-full max-w-sm"
                                     >
                                           <div className="flex justify-between items-center text-sm mb-4">
-                                                <p className="font-bold text-black md:text-[20px]">Super Plus <br></br><span className="text-[#29B0AC]">Package</span></p>
-                                                <p className="text-[#29B0AC]  font-semibold md:text-[24px]">Rp. 150k</p>
+                                                <p className="font-bold text-black md:text-[20px]">
+                                                      Super Plus <br />
+                                                      <span className="text-[#29B0AC]">Package</span>
+                                                </p>
+                                                <p className="text-[#29B0AC] font-semibold md:text-[24px]">Rp. 150k</p>
                                           </div>
                                           <div className="w-full border border-black rounded-md overflow-hidden text-xs mb-4">
                                                 <div className="flex divide-x divide-black">
                                                       <div className="w-1/2 p-2 font-bold md:text-[20px]">1 SESI</div>
-                                                      <div className="w-1/2 p-2 font-semibold md:text-[14px] text-left">Consultation with Our Mentor Up to 60 Minutes</div>
+                                                      <div className="w-1/2 p-2 font-semibold md:text-[14px] text-left">
+                                                            Consultation with Our Mentor Up to 60 Minutes
+                                                      </div>
                                                 </div>
                                           </div>
-
                                           <ul className="text-left text-xs space-y-1 font-semibold md:text-[14px]">
                                                 <li>• 1-on-1 consultation with mentor</li>
                                                 <li>• Online consultation via Zoom (75 mins)</li>
@@ -299,11 +377,11 @@ export default function ServicesPage() {
                               <div>
                                     <h4 className="font-semibold mb-2">Contact</h4>
                                     <p>partnership@nextstep.id</p>
-                                    <p>0822-9807-3454 (Chat only)</p>
+                                    <Link href="https://wa.me/+6282298073454"><p className="hover:text-teal-500">0822-9807-3454 (Chat only)</p></Link>
                               </div>
                               <div>
                                     <h4 className="font-semibold mb-2">Follow Us</h4>
-                                    <p>Twitter<br />LinkedIn<br />Instagram</p>
+                                    <Link href="https://www.instagram.com/lets.nextstep?igsh=dDVzaWw2NmhxbzMw"><p className="hover:text-teal-500">Instagram</p></Link>
                               </div>
                         </div>
                         <div className="mt-10 text-center text-gray-400 text-[10px] sm:text-xs">

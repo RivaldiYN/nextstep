@@ -77,17 +77,14 @@ export default function FAQPage() {
                         </button>
                         <ul className={`w-full md:w-auto ${menuOpen ? 'block' : 'hidden'} md:flex space-y-2 md:space-y-0 md:space-x-6 mt-4 md:mt-0 text-[16px] md:text-[18px] font-extrabold`}>
                               {navItems.map((item) => (
-                                    <li key={item.href} className="relative group">
+                                    <li key={item.name} className="relative group">
                                           {item.submenu ? (
                                                 <>
+                                                      {/* Mobile */}
                                                       <div className="md:hidden">
-                                                            <Link
-                                                                  href={item.href}
-                                                                  className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"
-                                                                        } hover:bg-[#d1f0ee] transition`}
-                                                            >
+                                                            <span className="block px-4 py-2 rounded-md text-gray-800 hover:bg-[#d1f0ee] transition">
                                                                   {item.name}
-                                                            </Link>
+                                                            </span>
                                                             <button
                                                                   onClick={() => setServicesOpen(!servicesOpen)}
                                                                   className="md:hidden absolute right-2 top-2 px-2"
@@ -95,17 +92,16 @@ export default function FAQPage() {
                                                                   <span className="text-sm">▼</span>
                                                             </button>
                                                       </div>
+                                                      {/* Desktop */}
                                                       <div className="hidden md:block">
-                                                            <Link
-                                                                  href={item.href}
-                                                                  className={`block px-4 py-2 rounded-md ${pathname === item.href ? "text-teal-500" : "text-gray-800"}hover:bg-[#d1f0ee] transition`}
-                                                            >
+                                                            <span className="block px-4 py-2 rounded-md text-gray-800 cursor-default hover:bg-[#d1f0ee] transition">
                                                                   <span className="flex items-center">
                                                                         {item.name}
                                                                         <span className="text-sm ml-1">▼</span>
                                                                   </span>
-                                                            </Link>
+                                                            </span>
                                                       </div>
+                                                      {/* Submenu Mobile */}
                                                       <ul
                                                             className={`${servicesOpen ? "block" : "hidden"
                                                                   } md:hidden absolute left-0 top-full bg-white rounded-lg shadow-lg w-40 z-50`}
@@ -121,6 +117,7 @@ export default function FAQPage() {
                                                                   </li>
                                                             ))}
                                                       </ul>
+                                                      {/* Submenu Desktop */}
                                                       <div className="hidden md:group-hover:block absolute left-0 top-full pt-1 z-50">
                                                             <ul className="bg-white rounded-lg shadow-lg w-40">
                                                                   {item.submenu.map((sub) => (
@@ -145,7 +142,6 @@ export default function FAQPage() {
                                                       {item.name}
                                                 </Link>
                                           )}
-
                                     </li>
                               ))}
                         </ul>

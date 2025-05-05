@@ -22,6 +22,7 @@ const KelasOnlinePage = () => {
       const pathname = usePathname();
       const [menuOpen, setMenuOpen] = useState(false);
       const [servicesOpen, setServicesOpen] = useState(false);
+      const [footerServicesOpen, setFooterServicesOpen] = useState(false);
       return (
             <div className="font-['Plus Jakarta Sans'] text-gray-800 bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] min-h-screen">
                   <nav className="flex flex-wrap justify-between items-center py-4 px-6 md:px-32 border-b relative">
@@ -119,22 +120,35 @@ const KelasOnlinePage = () => {
                   {/* Footer */}
                   <footer className="bg-[#393737] text-white py-10 px-6 md:px-8 text-xs sm:text-sm">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm sm:text-base">
-                              <div className="flex justify-center">
-                                    <Image
-                                          src="/logo.png"
-                                          alt="NextStep Logo"
-                                          width={100}
-                                          height={100}
-                                          className="w-20 sm:w-24 md:w-28 lg:w-32 h-auto"
-                                          priority
-                                    />
+                              <div>
+                                    <div className="mb-3">
+                                          <Image
+                                                src="/logo.png"
+                                                alt="NextStep Logo"
+                                                width={100}
+                                                height={100}
+                                                className="w-20 sm:w-24 md:w-28 lg:w-32 h-auto"
+                                                priority
+                                          />
+                                    </div>
                               </div>
                               <div>
                                     <h4 className="font-semibold mb-2">Quick Links</h4>
                                     <ul className="space-y-1">
                                           <li className="hover:text-teal-500"><Link href="/">Home</Link></li>
                                           <li className="hover:text-teal-500"><Link href="/about">About us</Link></li>
-                                          <li className="hover:text-teal-500"><Link href="/services">Our Services</Link></li>
+                                          <li className="hover:text-teal-500 flex justify-between items-center cursor-pointer md:cursor-default"
+                                                onClick={() => setFooterServicesOpen(!footerServicesOpen)}
+                                          >
+                                                <span className="font-semibold">Our Services</span>
+                                                <span className={`ml-2 transition-transform md:hidden ${footerServicesOpen ? "rotate-180" : ""}`}>▼</span>
+                                          </li>
+                                          {/* Submenu - always visible on desktop, toggle on mobile */}
+                                          <ul className={`ml-4 mt-1 space-y-1 text-sm ${footerServicesOpen ? "block" : "hidden"} md:block`}>
+                                                <li className="hover:text-teal-400"><Link href="/services/mentoring">Mentoring</Link></li>
+                                                <li className="hover:text-teal-400"><Link href="/services/webinar">Webinar</Link></li>
+                                                <li className="hover:text-teal-400"><Link href="/services/kelas-online">Kelas Online</Link></li>
+                                          </ul>
                                           <li className="hover:text-teal-500"><Link href="/faq">FAQ</Link></li>
                                     </ul>
                               </div>

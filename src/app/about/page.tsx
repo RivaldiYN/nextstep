@@ -23,6 +23,7 @@ export default function AboutPage() {
       const pathname = usePathname();
       const [menuOpen, setMenuOpen] = useState(false);
       const [servicesOpen, setServicesOpen] = useState(false);
+      const [footerServicesOpen, setFooterServicesOpen] = useState(false);
 
       return (
             <div className="font-['Plus Jakarta Sans'] text-gray-800 bg-gradient-to-r from-[#A2D6EB] to-[#F3F0EA] min-h-screen">
@@ -272,18 +273,21 @@ export default function AboutPage() {
                               <div>
                                     <h4 className="font-semibold mb-2">Quick Links</h4>
                                     <ul className="space-y-1">
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/">Home</Link>
+                                          <li className="hover:text-teal-500"><Link href="/">Home</Link></li>
+                                          <li className="hover:text-teal-500"><Link href="/about">About us</Link></li>
+                                          <li className="hover:text-teal-500 flex justify-between items-center cursor-pointer md:cursor-default"
+                                                onClick={() => setFooterServicesOpen(!footerServicesOpen)}
+                                          >
+                                                <span className="font-semibold">Our Services</span>
+                                                <span className={`ml-2 transition-transform md:hidden ${footerServicesOpen ? "rotate-180" : ""}`}>▼</span>
                                           </li>
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/about">About us</Link>
-                                          </li>
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/services">Our Services</Link>
-                                          </li>
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/faq">FAQ</Link>
-                                          </li>
+                                          {/* Submenu - always visible on desktop, toggle on mobile */}
+                                          <ul className={`ml-4 mt-1 space-y-1 text-sm ${footerServicesOpen ? "block" : "hidden"} md:block`}>
+                                                <li className="hover:text-teal-400"><Link href="/services/mentoring">Mentoring</Link></li>
+                                                <li className="hover:text-teal-400"><Link href="/services/webinar">Webinar</Link></li>
+                                                <li className="hover:text-teal-400"><Link href="/services/kelas-online">Kelas Online</Link></li>
+                                          </ul>
+                                          <li className="hover:text-teal-500"><Link href="/faq">FAQ</Link></li>
                                     </ul>
                               </div>
                               <div>

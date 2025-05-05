@@ -24,6 +24,7 @@ export default function FAQPage() {
       const [menuOpen, setMenuOpen] = useState(false);
       const [servicesOpen, setServicesOpen] = useState(false);
       const [activeIndex, setActiveIndex] = useState<number | null>(null);
+      const [footerServicesOpen, setFooterServicesOpen] = useState(false);
 
       const faqs = [
             {
@@ -267,28 +268,35 @@ export default function FAQPage() {
                               <div>
                                     <h4 className="font-semibold mb-2">Quick Links</h4>
                                     <ul className="space-y-1">
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/">Home</Link>
+                                          <li className="hover:text-teal-500"><Link href="/">Home</Link></li>
+                                          <li className="hover:text-teal-500"><Link href="/about">About us</Link></li>
+                                          <li className="hover:text-teal-500 flex justify-between items-center cursor-pointer md:cursor-default"
+                                                onClick={() => setFooterServicesOpen(!footerServicesOpen)}
+                                          >
+                                                <span className="font-semibold">Our Services</span>
+                                                <span className={`ml-2 transition-transform md:hidden ${footerServicesOpen ? "rotate-180" : ""}`}>▼</span>
                                           </li>
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/about">About us</Link>
-                                          </li>
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/services">Our Services</Link>
-                                          </li>
-                                          <li className="hover:text-teal-500">
-                                                <Link href="/faq">FAQ</Link>
-                                          </li>
+                                          {/* Submenu - always visible on desktop, toggle on mobile */}
+                                          <ul className={`ml-4 mt-1 space-y-1 text-sm ${footerServicesOpen ? "block" : "hidden"} md:block`}>
+                                                <li className="hover:text-teal-400"><Link href="/services/mentoring">Mentoring</Link></li>
+                                                <li className="hover:text-teal-400"><Link href="/services/webinar">Webinar</Link></li>
+                                                <li className="hover:text-teal-400"><Link href="/services/kelas-online">Kelas Online</Link></li>
+                                          </ul>
+                                          <li className="hover:text-teal-500"><Link href="/faq">FAQ</Link></li>
                                     </ul>
                               </div>
                               <div>
                                     <h4 className="font-semibold mb-2">Contact</h4>
                                     <p>partnership@nextstep.id</p>
-                                    <Link href="https://wa.me/+6282298073454"><p className="hover:text-teal-500">0822-9807-3454 (Chat only)</p></Link>
+                                    <Link href="https://wa.me/+6282298073454">
+                                          <p className="hover:text-teal-500">0822-9807-3454 (Chat only)</p>
+                                    </Link>
                               </div>
                               <div>
                                     <h4 className="font-semibold mb-2">Follow Us</h4>
-                                    <Link href="https://www.instagram.com/lets.nextstep?igsh=dDVzaWw2NmhxbzMw"><p className="hover:text-teal-500">Instagram</p></Link>
+                                    <Link href="https://www.instagram.com/lets.nextstep?igsh=dDVzaWw2NmhxbzMw">
+                                          <p className="hover:text-teal-500">Instagram</p>
+                                    </Link>
                               </div>
                         </div>
                         <div className="mt-10 text-center text-gray-400 text-[10px] sm:text-xs">

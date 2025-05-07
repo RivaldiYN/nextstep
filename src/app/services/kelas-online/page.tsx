@@ -155,8 +155,8 @@ const KelasOnlinePage = () => {
                               <div>
                                     <h4 className="font-semibold mb-2">Contact</h4>
                                     <p>partnership@nextstep.id</p>
-                                    <Link href="https://wa.me/+6282298073454">
-                                          <p className="hover:text-teal-500">0822-9807-3454 (Chat only)</p>
+                                    <Link href="https://wa.me/+6288211912324">
+                                          <p className="hover:text-teal-500">088211912324 (Chat only)</p>
                                     </Link>
                               </div>
                               <div>

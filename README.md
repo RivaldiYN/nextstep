@@ -77,7 +77,7 @@ Whether you're confused, curious, or completely lost — we're here to guide you
 We’re open to partnerships and collaborations that align with our mission to support youth career growth.
 
 📧 Email: `partnership@nextstep.id`  
-📱 WhatsApp: `0822-9807-3454 (Chat Only)`  
+📱 WhatsApp: `088211912324 (Chat Only)`  
 📷 Instagram: [@lets.nextstep](https://www.instagram.com/lets.nextstep)
 
 ---
